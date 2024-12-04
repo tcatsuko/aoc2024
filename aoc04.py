@@ -1,4 +1,4 @@
-f = open('test_aoc04.txt','rt')
+f = open('aoc04.txt','rt')
 raw_input = []
 for line in f:
     raw_input += [line.strip()]
@@ -36,3 +36,42 @@ for row, line in enumerate(wordsearch):
             if wordsearch[row+1][col+1] == 'M' and wordsearch[row+2][col+2] == 'A' and wordsearch[row+3][col+3] == 'S':
                 found_xmas += 1
 print('Part 1: found ' + str(found_xmas) + ' instances of XMAS')
+
+# Part 2
+found_x_mas = 0
+for row, line in enumerate(wordsearch):
+    for col, letter in enumerate(line):
+        if letter == 'A':
+            # M . .
+            # . A .
+            # . . S
+            if wordsearch[row-1][col-1] == 'M' and wordsearch[row+1][col+1] == 'S':
+                if wordsearch[row+1][col-1] == 'M' and wordsearch[row-1][col+1] == 'S':
+                    found_x_mas += 1
+                elif wordsearch[row-1][col+1] == 'M' and wordsearch[row+1][col-1] == 'S':
+                    found_x_mas += 1
+            # . . M
+            # . A .
+            # S . .
+            elif wordsearch[row-1][col+1] == 'M' and wordsearch[row+1][col-1] == 'S':
+                if wordsearch[row-1][col-1] == 'M' and wordsearch[row+1][col+1] == 'S':
+                    found_x_mas += 1
+                elif wordsearch[row+1][col+1] == 'M' and wordsearch[row-1][col-1] == 'S':
+                    found_x_mas += 1
+            # . . S
+            # . A . 
+            # M . .
+            elif wordsearch[row+1][col-1] == 'M' and wordsearch[row-1][col+1] == 'S':
+                if wordsearch[row-1][col-1] == 'M' and wordsearch[row+1][col+1] == 'S':
+                    found_x_mas += 1
+                elif wordsearch[row+1][col+1] == 'M' and wordsearch[row-1][col-1] == 'S':
+                    found_x_mas += 1
+            # S . .
+            # . A .
+            # . . M
+            elif wordsearch[row+1][col+1] == 'M' and wordsearch[row-1][col-1] == 'S':
+                if wordsearch[row-1][col+1] == 'M' and wordsearch[row+1][col-1] == 'S':
+                    found_x_mas += 1
+                elif wordsearch[row+1][col-1] == 'M' and wordsearch[row-1][col+1] == 'S':
+                    found_x_mas += 1
+print('Part 1: found ' + str(found_x_mas) + ' instances of X-MAS')
