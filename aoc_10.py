@@ -53,6 +53,5 @@ for head in trailheads:
     for tail in trailtails:
         if nx.has_path(G, head, tail):
             trailhead_score += len(list(nx.all_simple_paths(G, head, tail)))
-            db = 1
     scores += trailhead_score
 print('Part 2: total ratings is ' + str(scores))
