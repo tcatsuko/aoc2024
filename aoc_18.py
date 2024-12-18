@@ -32,12 +32,18 @@ for node in range(bytes_to_fall):
     col, row = [int(x) for x in raw_input[node].split(',')]
     G.remove_node((row, col))
 shortest_length = nx.shortest_path_length(G, start_pos, end_pos)
+shortest_path = nx.shortest_path(G, start_pos, end_pos)
 print('Part 1: shortest path is ' + str(shortest_length))
 
 for x in range(bytes_to_fall + 1, len(raw_input)):
     col, row = [int(x) for x in raw_input[x].split(',')]
     G.remove_node((row, col))
-    if not nx.has_path(G, start_pos, end_pos):
-        bad_byte = (row, col)
-        break
+    
+    if (row, col) in shortest_path:
+        has_path = nx.has_path(G, start_pos, end_pos)
+        if has_path:
+            shortest_path = nx.shortest_path(G, start_pos, end_pos)
+        else:
+            bad_byte = (row, col)
+            break
 print('Part 2: the bad byte is at ' + str(bad_byte[1]) + ',' + str(bad_byte[0]))
