@@ -14,12 +14,6 @@ def pseudorando(number):
 secret_sum = 0
 num_to_generate = 2000
 pricechange_dict = defaultdict(list)
-def check_zeroes(in_prices):
-    # returns false if there are consecutive zeroes
-    for i in range(len(in_prices) - 1):
-        if in_prices[i] == 0 and in_prices[i + 1] == 0:
-            return False
-    return True
 
 for number in raw_input:
     secret_number = number
